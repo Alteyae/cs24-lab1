@@ -1,0 +1,9 @@
+JUICE-003 - Reflected / DOM XSS in search
+Page: /#/search?q=
+
+Type this in the search box and hit enter:
+
+<iframe src="javascript:alert(`xss`)">
+
+The search term gets put back into the page as HTML, so the iframe loads
+javascript:alert(`xss`) and the script runs. Solves the "DOM XSS" challenge.

@@ -1,0 +1,9 @@
+JUICE-001 - SQL injection login bypass
+Page: /#/login  (POST /rest/user/login)
+
+Put this in the Email field, any password:
+
+' OR 1=1--
+
+The query is built by string concatenation, so this returns all users and
+logs in as the first one (admin@juice-sh.op).

