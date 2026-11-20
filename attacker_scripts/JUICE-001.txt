@@ -1,0 +1,3 @@
+Payload: ' OR 1=1 --
+Attack Vector: Login Form via Email Input
+URL: /login
