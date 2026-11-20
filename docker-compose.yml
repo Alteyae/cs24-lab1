@@ -5,6 +5,8 @@ services:
   juice-shop:
     image: bkimminich/juice-shop:v17.1.1
     container_name: cs24l-juice-shop
+    environment:
+      NODE_ENV: unsafe
     ports:
       - "3000:3000"
-    restart: unless-stopped
+  restart: unless-stopped

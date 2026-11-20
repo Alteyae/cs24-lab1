@@ -3,3 +3,19 @@ JUICE-001,,SQL Injection,,,,,,,,JUICE-001.png
 JUICE-002,,SQL Injection,,,,,,,,JUICE-002.png
 JUICE-003,,XSS - Reflected,,,,,,,,JUICE-003.png
 JUICE-004,,XSS - Stored,,,,,,,,JUICE-004.png
+
+JUICE-001.png – SQL Injection (Login Bypass)
+- Description: Attackers can exploit the login system by inserting malicious SQL commands into the login fields. This may allow them to access administrator accounts without knowing the correct username or password, giving them control over application data and administrative functions.
+- Recommendation: Use prepared statements or parameterized queries when handling login credentials. This ensures that user input is treated as data instead of executable SQL commands.
+
+JUICE-002.png – SQL Injection (Data Extraction via Search)
+- Description: Attackers can manipulate the product search function using SQL injection to access information stored in the database. This could expose sensitive user details, including email addresses, password hashes, and other database information.
+- Recommendation: Apply parameterized queries to product searches and validate user input to prevent malicious SQL commands from being executed.
+
+JUICE-003.png – Reflected XSS
+- Description: Attackers can insert malicious JavaScript into the search parameter, causing the script to run in another user's browser. This could put user sessions at risk, expose sensitive information, or redirect users to harmful websites.
+- Recommendation: Properly encode user input before displaying it on webpages. Implement a Content Security Policy (CSP) to help prevent unauthorized scripts from executing.
+
+JUICE-004.png – Stored XSS
+- Description: Attackers can save malicious JavaScript through input fields, such as feedback forms. The script may automatically execute whenever an administrator or another user views the saved content, potentially compromising their account and allowing unauthorized actions.
+- Recommendation: Sanitize user-submitted content using trusted libraries like DOMPurify. Also, apply HTML entity encoding when displaying saved information to prevent malicious scripts from executing.
