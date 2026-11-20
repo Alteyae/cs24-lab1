@@ -1,5 +1,5 @@
 finding_id,title,vuln_type,url_or_endpoint,severity,owasp,mitre_attack,payload_used,impact,remediation,screenshot
-JUICE-001,,SQL Injection,,,,,,,,JUICE-001.png
-JUICE-002,,SQL Injection,,,,,,,,JUICE-002.png
-JUICE-003,,XSS - Reflected,,,,,,,,JUICE-003.png
-JUICE-004,,XSS - Stored,,,,,,,,JUICE-004.png
+JUICE-001,User Credentials,SQL Injection,Login endpoint,Critical,A03:2021 Injection,T1190,See actual tested input,Database information disclosure,Use parameterized SQL queries and least-privilege database access,JUICE-001.png
+JUICE-002,Login Admin,SQL Injection,Login endpoint,High,A03:2021 Injection,T1190,See actual tested input,Unauthorized administrator access,Use parameterized SQL queries and secure authentication controls,JUICE-002.png
+JUICE-003,Reflected XSS,XSS - Reflected,Search page,Medium,A03:2021 Injection,T1189,iframe JavaScript alert proof of concept,Untrusted reflected input may execute JavaScript,Apply context-aware output encoding and validate input,JUICE-003.png
+JUICE-004,Stored XSS,XSS - Stored,Apple Juice product review,Low,A03:2021 Injection,T1189,HTML iframe test input displayed as text,Review persistence observed but JavaScript execution not verified,Sanitize stored content and apply context-aware output encoding,JUICE-004.png
