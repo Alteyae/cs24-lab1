@@ -1,5 +1,5 @@
 finding_id,title,vuln_type,url_or_endpoint,severity,owasp,mitre_attack,payload_used,impact,remediation,screenshot
-JUICE-001,,SQL Injection,,,,,,,,JUICE-001.png
-JUICE-002,,SQL Injection,,,,,,,,JUICE-002.png
-JUICE-003,,XSS - Reflected,,,,,,,,JUICE-003.png
-JUICE-004,,XSS - Stored,,,,,,,,JUICE-004.png
+JUICE-001,Login Admin,SQL Injection,/rest/user/login,High,A03:2021 – Injection,TA0001,user : {id: 1, email: "admin@juice-sh.op", lastLoginIp: "",…},attackers can access any accounts,replace dynamic string concatenation with parameterized queries (prepared statements),JUICE-001.png
+JUICE-002,Data Extraction,SQL Injection,/rest/products/search?q=,Critical,A03:2021 – Injection,TA0001,')) UNION SELECT '1', '1', '1', '1', '2', '3', '7', '8', '9' FROM sqlite_master--,unauthorized access to sensitive records, credentials, and proprietary intelligence without needing to breach the underlying network,enforcing strict authentication and parameterized queries across all search endpoints,JUICE-002.png
+JUICE-003,DOM XSS,XSS - Reflected,GET /rest/products/search?q=,Critical,A05:2025 Injection,T1189,<img src=x onerror=alert(`xss`)>,the ability to execute arbitrary JavaScript inside the victim's browser within the security context of the vulnerable website,ensure the browser treats user input strictly as plain text rather than executable code,JUICE-003.png
+JUICE-004,Saved XSS,XSS - Stored,POST /api/Feedbacks/,Critical,A05:2025 Injection,T1189,<iframe src="javascript:alert(`xss`)">,the ability to execute arbitrary scripts inside other users' browsers whenever they load the saved content,apply context-aware output encoding every time saved data is rendered in a browser,JUICE-004.png
