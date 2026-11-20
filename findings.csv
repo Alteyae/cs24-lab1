@@ -1,5 +1,5 @@
 finding_id,title,vuln_type,url_or_endpoint,severity,owasp,mitre_attack,payload_used,impact,remediation,screenshot
-JUICE-001,,SQL Injection,,,,,,,,JUICE-001.png
-JUICE-002,,SQL Injection,,,,,,,,JUICE-002.png
-JUICE-003,,XSS - Reflected,,,,,,,,JUICE-003.png
-JUICE-004,,XSS - Stored,,,,,,,,JUICE-004.png
+JUICE-001,Administrator Login Bypass,SQL Injection,POST /rest/user/login,Critical,A03:2021 - Injection,T1190,' OR 1=1--,The login form allowed authentication as the administrator without knowing the password.,Use parameterized SQL queries and validate input on the server.,JUICE-001.png
+JUICE-002,UNION-Based User Data Extraction,SQL Injection,GET /rest/products/search?q=,High,A03:2021 - Injection,T1190,"qwert')) UNION SELECT id,email,'EXTRACTED',4,5,6,7,8,9 FROM Users--",The product search endpoint exposed user IDs and email addresses from the Users table.,Use parameterized queries and restrict database access to necessary data.,JUICE-002.png
+JUICE-003,Reflected XSS in Order Tracking,XSS - Reflected,/#/track-result?id=,Medium,A03:2021 - Injection,T1190,"<iframe src=""javascript:alert(`xss`)"">",The tracking ID parameter executed injected JavaScript in the browser.,Apply context-appropriate output encoding and sanitize untrusted HTML.,JUICE-003.png
+JUICE-004,Stored XSS in Registered Users,XSS - Stored,POST /api/Users,High,A03:2021 - Injection,T1190,"<iframe src=""javascript:alert(`xss`)"">",A stored user email payload executed JavaScript when the administration page displayed registered users.,Validate stored inputs and safely encode user-controlled content when rendering it.,JUICE-004.png
