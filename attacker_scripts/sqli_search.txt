@@ -1,0 +1,1 @@
+' UNION SELECT id,name,description,price,deluxePrice,image,createdAt,updatedAt,deletedAt FROM Products--
