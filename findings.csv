@@ -1,5 +1,5 @@
 finding_id,title,vuln_type,url_or_endpoint,severity,owasp,mitre_attack,payload_used,impact,remediation,screenshot
-JUICE-001,,SQL Injection,,,,,,,,JUICE-001.png
-JUICE-002,,SQL Injection,,,,,,,,JUICE-002.png
-JUICE-003,,XSS - Reflected,,,,,,,,JUICE-003.png
-JUICE-004,,XSS - Stored,,,,,,,,JUICE-004.png
+JUICE-001,SQL Injection - Admin Login Bypass,SQL Injection,POST /rest/user/login,Critical,A03:2021 - Injection,T1190,"' OR 1=1--","Authenticate as the administrator without valid credentials, gaining full access to all accounts and data.",Use parameterized queries / prepared statements and never concatenate user input into SQL.,JUICE-001.png
+JUICE-002,SQL Injection - UNION-Based Data Extraction,SQL Injection,GET /rest/products/search?q=,Critical,A03:2021 - Injection,T1190,"')) UNION SELECT id, email, password, '4','5','6','7','8','9' FROM Users--",Extract every user's email address and password hash directly from the database.,Use parameterized queries and an ORM; validate and allowlist search input.,JUICE-002.png
+JUICE-003,Reflected XSS - Product Search,XSS - Reflected,GET /#/search?q=,Medium,A03:2021 - Injection,T1059.007,"<iframe src=""javascript:alert(`xss`)"">","Execute arbitrary JavaScript in a victim's browser via a crafted search link (session theft, phishing).",Apply context-aware output encoding and a strict Content-Security-Policy on reflected input.,JUICE-003.png
+JUICE-004,Stored XSS - Registration Email in Admin Panel,XSS - Stored,POST /api/Users (rendered at /#/administration),High,A03:2021 - Injection,T1059.007,"<iframe src=""javascript:alert(`xss`)""> (stored as email)","Persisted script runs in the administrator's browser when the user table renders, enabling admin session hijacking.",Sanitize and encode user input server-side before storage and on render; enforce CSP.,JUICE-004.png
