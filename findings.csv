@@ -1,5 +1,5 @@
 finding_id,title,vuln_type,url_or_endpoint,severity,owasp,mitre_attack,payload_used,impact,remediation,screenshot
-JUICE-001,,SQL Injection,,,,,,,,JUICE-001.png
-JUICE-002,,SQL Injection,,,,,,,,JUICE-002.png
-JUICE-003,,XSS - Reflected,,,,,,,,JUICE-003.png
-JUICE-004,,XSS - Stored,,,,,,,,JUICE-004.png
+JUICE-001,SQL Injection - Login Bypass,SQL Injection,/rest/user/login,High,A03:2021 - Injection,T1190,"' OR 1=1 --",An attacker may bypass authentication and gain unauthorized access to an account,Use parameterized queries and secure authentication,JUICE-001.png
+JUICE-002,SQL Injection - UNION Data Extraction,SQL Injection,/rest/products/search,High,A03:2021 - Injection,T1190,"qwert')) UNION SELECT id, email, password, '4', '5', '6', '7', '8', '9' FROM Users--",An attacker may retrieve sensitive user information that should not be exposed through product search,Use parameterized queries and validate user input,JUICE-002.png
+JUICE-003,Reflected Cross-Site Scripting (XSS),XSS - Reflected,/rest/products/search,High,A03:2021 - Injection,T1189,"<iframe src=""javascript:alert('JUICE-003')""></iframe>",Injected JavaScript may execute in a user's browser and affect their session or interact with page content,Validate input and safely encode untrusted data before displaying it,JUICE-003.png
+JUICE-004,Stored XSS Test - Product Review,XSS - Stored,[Product Review Page],High,A03:2021 - Injection,T1189,"<iframe src=""javascript:alert('xss')""></iframe>",The submitted review was stored but script execution was not confirmed,Encode untrusted content and sanitize user-submitted input,JUICE-004.png
