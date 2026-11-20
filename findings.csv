@@ -1,5 +1,5 @@
 finding_id,title,vuln_type,url_or_endpoint,severity,owasp,mitre_attack,payload_used,impact,remediation,screenshot
-JUICE-001,,SQL Injection,,,,,,,,JUICE-001.png
-JUICE-002,,SQL Injection,,,,,,,,JUICE-002.png
-JUICE-003,,XSS - Reflected,,,,,,,,JUICE-003.png
-JUICE-004,,XSS - Stored,,,,,,,,JUICE-004.png
+JUICE-001,SQL Injection - Login Bypass,SQL Injection,POST /rest/user/login,Critical,A03:2021 - Injection,T1190,' OR 1=1--,Bypasses authentication entirely allowing an attacker to log in as the administrator without a password.,Use parameterized queries (prepared statements) instead of string concatenation for database queries.,JUICE-001.png
+JUICE-002,SQL Injection - Data Extraction,SQL Injection,GET /rest/products/search?q=,High,A03:2021 - Injection,T1190,"none')) UNION SELECT id, email, password, role, isActive, username, createdAt, deletedAt, totpSecret FROM Users--",Allows an attacker to extract sensitive database information (like user emails passwords and roles) directly through the public search endpoint.,Sanitize and validate all user inputs and strictly use parameterized queries to prevent query manipulation.,JUICE-002.png
+JUICE-003,Reflected XSS,XSS - Reflected,GET /#/search?q=,Medium,A03:2021 - Injection,T1059.007,"<iframe src=""javascript:alert(`xss`)"">",Executes arbitrary JavaScript in the victim's browser which can be used to steal session cookies or perform actions on their behalf.,Implement proper output encoding and a strict Content Security Policy (CSP).,JUICE-003.png
+JUICE-004,Stored XSS (Client-side XSS Protection),XSS - Stored,POST /api/Users,High,A03:2021 - Injection,T1059.007,"<iframe src=""javascript:alert(`xss`)"">",Persists malicious code in the database which executes whenever an admin views the user list leading to potential account takeover.,Validate and sanitize all inputs on the server side and use context-aware escaping when rendering.,JUICE-004.png
