@@ -1,6 +1,6 @@
 
 finding_id,title,vuln_type,url_or_endpoint,severity,owasp,mitre_attack,payload_used,impact,remediation,screenshot
 JUICE-001,SQL Injection – Login Bypass,SQL Injection,POST /rest/user/login,Critical,A03:2021 - Injection,T1190,' OR 1=1 --,allows unauthorized access to an account,Use parameterized SQL queries and properly validate user input.,JUICE-001.png
-JUICE-002,,SQL Injection,,,,,,,,JUICE-002.png
+JUICE-002,SQL Injection - User Data Dump via Product Search (UNION),SQL Injection,GET /rest/products/search?q=,Critical,A03:2021 - Injection,T1190,qwert')) UNION SELECT id, email, password, '4','5','6','7','8','9' FROM Users--,Extracts every user's email address and password hash through the product search endpoint, exposing all account credentials.,Use parameterized queries and a least-privilege database account; validate input and do not interpolate it into SQL.,JUICE-002.png
 JUICE-003,,XSS - Reflected,,,,,,,,JUICE-003.png
 JUICE-004,,XSS - Stored,,,,,,,,JUICE-004.png
