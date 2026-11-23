@@ -10,3 +10,5 @@ Thumbs.db
 
 # Instructor-only (answer key) — never push to the public repo
 INSTRUCTOR.md
+juiceshop-progress-backup.sqlite
+juiceshop-progress-backup-before-safety-restore.sqlite

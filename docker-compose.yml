@@ -7,4 +7,6 @@ services:
     container_name: cs24l-juice-shop
     ports:
       - "3000:3000"
+    volumes:
+      - ./juiceshop-progress-backup.sqlite:/juice-shop/data/juiceshop.sqlite
     restart: unless-stopped
